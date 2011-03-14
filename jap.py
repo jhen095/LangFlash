@@ -1,59 +1,60 @@
 ﻿#!/usr/bin/env python
 
 import sys
+import argparse
 import random
 
 def load():
     # One day these will be populated from an external file. Probably XML.
-    verbs.insert(0, VerbQuestion('iru', 'いる', 'exists (a)'))
-    verbs.insert(1, VerbQuestion('aru', 'ある', 'exists (i)'))
-    verbs.insert(2, VerbQuestion('motsu', 'もつ', 'carry'))
-    verbs.insert(3, VerbQuestion('suru', 'する', 'do'))
-    verbs.insert(4, VerbQuestion('tsukuru', 'つくる', 'make'))
-    verbs.insert(5, VerbQuestion('dekiru', 'できる', 'able'))
-    verbs.insert(6, VerbQuestion('iu', 'いう', 'say'))
-    verbs.insert(7, VerbQuestion('iku', 'いく', 'go'))
-    verbs.insert(8, VerbQuestion('miru', 'みる', 'see'))
-    verbs.insert(9, VerbQuestion('ageru', 'あげる', 'give'))
-    verbs.insert(10, VerbQuestion('taberu', 'たべる', 'eat'))
-    verbs.insert(11, VerbQuestion('shiru', 'しる', 'know'))
-    verbs.insert(12, VerbQuestion('hoshii', 'ほしい', 'want'))
-    verbs.insert(13, VerbQuestion('kuru', 'くる', 'come'))
-    verbs.insert(14, VerbQuestion('tsukeru', 'つける', 'put on'))
-    verbs.insert(15, VerbQuestion('oku', 'おく', 'put'))
-    verbs.insert(16, VerbQuestion('shinjiru', 'しんじる', 'believe'))
-    verbs.insert(17, VerbQuestion('hanasu', 'はなす', 'speak'))
-    verbs.insert(18, VerbQuestion('yomu', 'よむ', 'read'))
-    verbs.insert(19, VerbQuestion('neru', 'ねる', 'sleep'))
-    verbs.insert(20, VerbQuestion('mitsukeru', 'みつける', 'find'))
-    verbs.insert(21, VerbQuestion('yobu', 'よぶ', 'call'))
-    verbs.insert(22, VerbQuestion('oyogu', 'およぐ', 'swim'))
-    verbs.insert(23, VerbQuestion('hajimeru', 'はじめる', 'begin (t)'))
-    verbs.insert(24, VerbQuestion('kangaeru', 'かんがえる', 'consider'))
-    verbs.insert(25, VerbQuestion('oshieru', 'おしえる', 'teach'))
-    verbs.insert(26, VerbQuestion('utau', 'うたう', 'sing'))
-    verbs.insert(27, VerbQuestion('wakaru', 'わかる', 'understand'))
-    verbs.insert(28, VerbQuestion('warau', 'わらう', 'laugh'))
-    verbs.insert(29, VerbQuestion('tatsu', 'たつ', 'stand'))
-    verbs.insert(30, VerbQuestion('tomaru', 'とまる', 'stop'))
-    verbs.insert(31, VerbQuestion('tsuku', 'つく', 'arrive'))
-    verbs.insert(32, VerbQuestion('uru', 'うる', 'sell'))
-    verbs.insert(33, VerbQuestion('omou', 'おもう', 'think'))
-    verbs.insert(34, VerbQuestion('suwaru', 'すわる', 'sit'))
-    verbs.insert(35, VerbQuestion('narau', 'ならう', 'learn'))
-    verbs.insert(36, VerbQuestion('nomu', 'のむ', 'drink'))
-    verbs.insert(37, VerbQuestion('okuru', 'おくる', 'send'))
-    verbs.insert(38, VerbQuestion('kaku', 'かく', 'write'))
-    verbs.insert(39, VerbQuestion('hairu', 'はいる', 'enter'))
-    verbs.insert(40, VerbQuestion('kau', 'かう', 'buy'))
-    verbs.insert(41, VerbQuestion('kiku', 'きく', 'listen'))
-    verbs.insert(42, VerbQuestion('matsu', 'まつ', 'wait'))
-    verbs.insert(43, VerbQuestion('hajimaru', 'はじまる', 'begin (i)'))
-    verbs.insert(44, VerbQuestion('kaeru', 'かえる', 'return'))
-    verbs.insert(45, VerbQuestion('kakaru', 'かかる', 'take'))
-    verbs.insert(46, VerbQuestion('aruku', 'あるく', 'walk'))
-    verbs.insert(47, VerbQuestion('asobu', 'あそぶ', 'play'))
-    verbs.insert(48, VerbQuestion('au', 'あう', 'meet'))
+    verbs.append(VerbQuestion('iru', 'いる', 'exists (a)'))
+    verbs.append(VerbQuestion('aru', 'ある', 'exists (i)'))
+    verbs.append(VerbQuestion('motsu', 'もつ', 'carry'))
+    verbs.append(VerbQuestion('suru', 'する', 'do'))
+    verbs.append(VerbQuestion('tsukuru', 'つくる', 'make'))
+    verbs.append(VerbQuestion('dekiru', 'できる', 'able'))
+    verbs.append(VerbQuestion('iu', 'いう', 'say'))
+    verbs.append(VerbQuestion('iku', 'いく', 'go'))
+    verbs.append(VerbQuestion('miru', 'みる', 'see'))
+    verbs.append(VerbQuestion('ageru', 'あげる', 'give'))
+    verbs.append(VerbQuestion('taberu', 'たべる', 'eat'))
+    verbs.append(VerbQuestion('shiru', 'しる', 'know'))
+    verbs.append(VerbQuestion('hoshii', 'ほしい', 'want'))
+    verbs.append(VerbQuestion('kuru', 'くる', 'come'))
+    verbs.append(VerbQuestion('tsukeru', 'つける', 'put on'))
+    verbs.append(VerbQuestion('oku', 'おく', 'put'))
+    verbs.append(VerbQuestion('shinjiru', 'しんじる', 'believe'))
+    verbs.append(VerbQuestion('hanasu', 'はなす', 'speak'))
+    verbs.append(VerbQuestion('yomu', 'よむ', 'read'))
+    verbs.append(VerbQuestion('neru', 'ねる', 'sleep'))
+    verbs.append(VerbQuestion('mitsukeru', 'みつける', 'find'))
+    verbs.append(VerbQuestion('yobu', 'よぶ', 'call'))
+    verbs.append(VerbQuestion('oyogu', 'およぐ', 'swim'))
+    verbs.append(VerbQuestion('hajimeru', 'はじめる', 'begin (t)'))
+    verbs.append(VerbQuestion('kangaeru', 'かんがえる', 'consider'))
+    verbs.append(VerbQuestion('oshieru', 'おしえる', 'teach'))
+    verbs.append(VerbQuestion('utau', 'うたう', 'sing'))
+    verbs.append(VerbQuestion('wakaru', 'わかる', 'understand'))
+    verbs.append(VerbQuestion('warau', 'わらう', 'laugh'))
+    verbs.append(VerbQuestion('tatsu', 'たつ', 'stand'))
+    verbs.append(VerbQuestion('tomaru', 'とまる', 'stop'))
+    verbs.append(VerbQuestion('tsuku', 'つく', 'arrive'))
+    verbs.append(VerbQuestion('uru', 'うる', 'sell'))
+    verbs.append(VerbQuestion('omou', 'おもう', 'think'))
+    verbs.append(VerbQuestion('suwaru', 'すわる', 'sit'))
+    verbs.append(VerbQuestion('narau', 'ならう', 'learn'))
+    verbs.append(VerbQuestion('nomu', 'のむ', 'drink'))
+    verbs.append(VerbQuestion('okuru', 'おくる', 'send'))
+    verbs.append(VerbQuestion('kaku', 'かく', 'write'))
+    verbs.append(VerbQuestion('hairu', 'はいる', 'enter'))
+    verbs.append(VerbQuestion('kau', 'かう', 'buy'))
+    verbs.append(VerbQuestion('kiku', 'きく', 'listen'))
+    verbs.append(VerbQuestion('matsu', 'まつ', 'wait'))
+    verbs.append(VerbQuestion('hajimaru', 'はじまる', 'begin (i)'))
+    verbs.append(VerbQuestion('kaeru', 'かえる', 'return'))
+    verbs.append(VerbQuestion('kakaru', 'かかる', 'take'))
+    verbs.append(VerbQuestion('aruku', 'あるく', 'walk'))
+    verbs.append(VerbQuestion('asobu', 'あそぶ', 'play'))
+    verbs.append(VerbQuestion('au', 'あう', 'meet'))
 
 class Question:
     """Super class for all questions"""
@@ -85,21 +86,49 @@ class AdjectiveQuestion(VocabQuestion):
         
 
 def main():
+    parser = argparse.ArgumentParser(description='Japanese flashcards')
+    parser.add_argument('-q', '--question-mode', dest='questionMode', choices=['japanese', 'english', 'both'], default='both', help='')
+    parser.add_argument('-t', '--text-mode', dest='textMode', choices=['katakana', 'romaji'], default='katakana', help='')
+    args = parser.parse_args()
+#    args = parser.parse_args(['-q', 'english'])
+#    args = parser.parse_args(['-q', 'english', '-t', 'romaji'])
+#    args = parser.parse_args(['-q', 'japanese'])
+
     correctCount = 0
-    bContinue = True    
+    bContinue = True
+    chanceOfAskWrong = .33
+    askWrong = []
     load()
 
     while bContinue:
         # determine question/answer & print question
         currCorrectAns = ''
-        if(random.randint(0,1)):
-            currVerbObj = verbs[random.randint(0, len(verbs) - 1)]
-            print('Japanese for: ' + currVerbObj.english_meaning)
-            currCorrectAns = currVerbObj.hirigana_vocab
+        #ask wrong
+        if len(askWrong) > 0 and chanceOfAskWrong > random.random():
+            if args.questionMode == 'japanese' or (args.questionMode == 'both' and random.randint(0,1)):
+                currVerbObj = askWrong[random.randint(0, len(askWrong) - 1)]
+                print('Japanese for: ' + currVerbObj.english_meaning)
+                currCorrectAns = currVerbObj.hirigana_vocab
+            elif args.questionMode == 'english' or args.questionMode == 'both':
+                currVerbObj = askWrong[random.randint(0, len(askWrong) - 1)]
+                if args.textMode == 'katakana':
+                    print('English for: ' + currVerbObj.hirigana_vocab)
+                else:
+                    print('English for: ' + currVerbObj.romaji_vocab)
+                currCorrectAns = currVerbObj.english_meaning
+        #ask new
         else:
-            currVerbObj = verbs[random.randint(0, len(verbs) - 1)]
-            print('English for: ' + currVerbObj.hirigana_vocab)
-            currCorrectAns = currVerbObj.english_meaning
+            if args.questionMode == 'japanese' or (args.questionMode == 'both' and random.randint(0,1)):
+                currVerbObj = verbs[random.randint(0, len(verbs) - 1)]
+                print('Japanese for: ' + currVerbObj.english_meaning)
+                currCorrectAns = currVerbObj.hirigana_vocab
+            elif args.questionMode == 'english' or args.questionMode == 'both':
+                currVerbObj = verbs[random.randint(0, len(verbs) - 1)]
+                if args.textMode == 'katakana':
+                    print('English for: ' + currVerbObj.hirigana_vocab)
+                else:
+                    print('English for: ' + currVerbObj.romaji_vocab)
+                currCorrectAns = currVerbObj.english_meaning
     
         # get user answer
         currUserAns = input()
@@ -113,8 +142,11 @@ def main():
         if(currUserAns == currCorrectAns):
             correctCount+=1
             print('CORRECT - Correct Count = ' + str(correctCount) + '\n\n')
+            if askWrong.count(currVerbObj) > 0:
+                askWrong.remove(currVerbObj)
         else:
             print('WRONG - Correct answer is : ' + currCorrectAns + '\n\n')
+            askWrong.append(currVerbObj)
             
     print('Thanks for playing. Bye!')
 
