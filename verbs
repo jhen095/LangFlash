@@ -12,14 +12,14 @@ taberu	たべる	eat
 shiru	しる	know
 hoshii	ほしい	want
 kuru	くる	come
-tsukeru	つける	put on
+tsukeru	つける	turn on|wear (attach)
 oku	おく	put
 shinjiru	しんじる	believe
 hanasu	はなす	speak
 yomu	よむ	read
 neru	ねる	sleep
 mitsukeru	みつける	find
-yobu	よぶ	call
+yobu	よぶ	call|invite
 oyogu	およぐ	swim
 hajimeru	はじめる	begin (t)
 kangaeru	かんがえる	consider
@@ -39,11 +39,64 @@ okuru	おくる	send
 kaku	かく	write
 hairu	はいる	enter
 kau	かう	buy
-kiku	きく	listen
+kiku	きく	listen|hear|ask
 matsu	まつ	wait
 hajimaru	はじまる	begin (i)
 kaeru	かえる	return
-kakaru	かかる	take
+kakaru	かかる	take (time,money)
 aruku	あるく	walk
 asobu	あそぶ	play
 au	あう	meet
+aku	あく	empty
+akeru	あける	open
+abiru	あびる	shower
+arau	あらう	wash
+ireru	いれる	put in
+umareru	うまれる	be born
+okiru	おきる	get up
+osu	おす	push
+oboeru	おぼえる	remember
+oriru	おりる	get off
+owaru	おわる	finish
+kaesu	かえす	return thing
+kakeru	かける	wear (hang)|dial
+kasu	かす	lend
+kaburu	かぶる	wear (head)
+kariru	かりる	borrow
+kieru	きえる	vanish
+kiru	きる	cut|wear (body)
+kumoru	くもる	cloudy|dim
+kesu	けす	delete|turn off
+kotaeru	こたえる	reply
+komaru	こまる	worried
+sasu	さす	raise
+shimaru	しまる	close (i)
+shimeru	しめる	close (t)|tie
+suu	すう	smoke
+sumu	すむ	reside
+dasu	だす	send|submit
+tanomu	たのむ	request
+tsukau	つかう	use
+tsukareru	つかれる	tired
+tsutomeru	つとめる	work for
+dekakeru	でかける	depart
+deru	でる	leave|appear
+tobu	とぶ	fly
+toru	とる	take (photo)
+nakusu	なくす	lose something
+narabu	ならぶ	line up
+naraberu	ならべる	set up
+naru	なる	become
+noboru	のぼる	climb
+noru	のる	board
+haku	はく	wear (legs)
+hashiru	はしる	run
+hataraku	はたらく	work
+haru	はる	stick
+hiku	ひく	pull|play (music)
+magaru	まがる	turn
+migaku	みがく	brush
+miseru	みせる	show
+yasumu	やすむ	rest
+wasureru	わすれる	forget
+wataru	わたる	cross

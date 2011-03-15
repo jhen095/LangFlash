@@ -9,7 +9,7 @@ def load():
     f = open("verbs", "r", encoding="utf-8")
     for line in f:
         currLineSplit = line.split('\t')
-        verbs.append(VerbQuestion(currLineSplit[0], currLineSplit[1], currLineSplit[2]))
+        verbs.append(VerbQuestion(currLineSplit[0].strip(), currLineSplit[1].strip(), currLineSplit[2].strip()))
     f.close()
 
 class Question:
@@ -95,7 +95,7 @@ def main():
             continue
     	
         # check & print result
-        if(currUserAns == currCorrectAns):
+        if(currCorrectAns.split('|').count(currUserAns) > 0):
             correctCount+=1
             print('CORRECT - Correct Count = ' + str(correctCount) + '\n\n')
             if askWrong.count(currVerbObj) > 0:
