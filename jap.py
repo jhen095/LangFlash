@@ -5,107 +5,175 @@ import argparse
 import random
 
 def load():
-
+    # load verbs
     f = open("verbs", "r", encoding="utf-8")
     for line in f:
-        currLineSplit = line.split('\t')
-        verbs.append(VerbQuestion(currLineSplit[0].strip(), currLineSplit[1].strip(), currLineSplit[2].strip()))
+        if line[0] == '#':
+            continue
+        curr_line_split = line.split('\t')
+        verbs.append(VerbQuestion(curr_line_split[0].strip(), curr_line_split[1].strip(), curr_line_split[2].strip()))
     f.close()
 
-class Question:
-    """Super class for all questions"""
-    def __init__(self):
-        pass
+    # load adjectives
+    f = open("adjectives", "r", encoding="utf-8")
+    for line in f:
+        if line[0] == '#':
+            continue
+        curr_line_split = line.split('\t')
+        adjectives.append(AdjectiveQuestion(curr_line_split[0].strip(), curr_line_split[1].strip(), curr_line_split[2].strip()))
+    f.close()
 
-    def ask():
-        self.asked += 1
-
-    def resolve_answer(answer):
-        pass
-
-class VocabQuestion(Question):
-    """A simple vocabulary object"""
-    def __init__(self, romaji_vocab, hirigana_vocab, english_meaning):
+class VerbQuestion:
+    """"""
+    def __init__(self, romaji_vocab, hiragana_vocab, english_meaning):
         self.romaji_vocab = romaji_vocab
-        self.hirigana_vocab = hirigana_vocab
+        self.hiragana_vocab = hiragana_vocab
         self.english_meaning = english_meaning
+        self.last_asked_in = False
 
-class VerbQuestion(VocabQuestion):
-    """"""
-    def __init__(self, romaji_vocab, hirigana_vocab, english_meaning):
-        super(VerbQuestion, self).__init__(romaji_vocab, hirigana_vocab, english_meaning)
+    def ask_in_english(self):
+        self.last_asked_in = 'english'
+        print('Japanese for: ' + self.english_meaning)
 
-class AdjectiveQuestion(VocabQuestion):
+    def ask_in_japanese(self):
+        self.last_asked_in = 'japanese'
+        if hiragana:
+            print('English for: ' + self.hiragana_vocab)
+        else:
+            print('English for: ' + self.romaji_vocab)
+
+    def resolve_answer(self, user_answer):
+        ret_value = False
+        if self.last_asked_in == 'english' and hiragana:
+            answer = self.hiragana_vocab
+        elif self.last_asked_in == 'english':
+            answer = self.romaji_vocab
+        else:
+            answer = self.english_meaning
+
+        if answer.split('|').count(user_answer) > 0:
+            print('CORRECT')
+            ret_value = True
+        else:
+            print('WRONG')
+            ret_value = False
+
+        print(' - correct answer is : ' + answer)
+
+        return ret_value
+
+class AdjectiveQuestion:
     """"""
-    def __init__(self, romaji_vocab, hirigana_vocab, english_meaning):
-        super(VerbQuestion, self).__init__(romaji_vocab, hirigana_vocab, english_meaning)
-        
+    def __init__(self, romaji_vocab, hiragana_vocab, english_meaning):
+        self.romaji_vocab = romaji_vocab
+        self.hiragana_vocab = hiragana_vocab
+        self.english_meaning = english_meaning
+        self.last_asked_in = False
+
+    def ask_in_english(self):
+        self.last_asked_in = 'english'
+        print('Japanese for: ' + self.english_meaning)
+
+    def ask_in_japanese(self):
+        self.last_asked_in = 'japanese'
+        if hiragana:
+            print('English for: ' + self.hiragana_vocab)
+        else:
+            print('English for: ' + self.romaji_vocab)
+
+    def resolve_answer(self, user_answer):
+        ret_value = False
+        if self.last_asked_in == 'english' and hiragana:
+            answer = self.hiragana_vocab
+        elif self.last_asked_in == 'english':
+            answer = self.romaji_vocab
+        else:
+            answer = self.english_meaning
+
+        if answer.split('|').count(user_answer) > 0:
+            print('CORRECT')
+            ret_value = True
+        else:
+            print('WRONG')
+            ret_value = False
+
+        print(' - correct answer is : ' + answer)
+
+        return ret_value
 
 def main():
     parser = argparse.ArgumentParser(description='Japanese flashcards')
-    parser.add_argument('-q', '--question-mode', dest='questionMode', choices=['japanese', 'english', 'both'], default='both', help='')
-    parser.add_argument('-t', '--text-mode', dest='textMode', choices=['katakana', 'romaji'], default='katakana', help='')
-    args = parser.parse_args()
+    parser.add_argument('-q', '--question-mode', dest='question_mode', choices=['japanese', 'english', 'both'], default='both', help='')
+    parser.add_argument('-hm', '--hiragana-mode', dest='hiragana_mode', choices=['True', 'False'], default='True', help='')
+    parser.add_argument('-v', '--verb-mode', dest='verb_mode', choices=['True', 'False'], default='True', help='')
+    parser.add_argument('-a', '--adjective-mode', dest='adjective_mode', choices=['True', 'False'], default='True', help='')
+#    args = parser.parse_args()
 #    args = parser.parse_args(['-q', 'english'])
-#    args = parser.parse_args(['-q', 'english', '-t', 'romaji'])
-#    args = parser.parse_args(['-q', 'japanese'])
+#    args = parser.parse_args(['-q', 'english', '-hm', 'False'])
+    args = parser.parse_args(['-q', 'japanese'])
 
-    correctCount = 0
-    bContinue = True
-    chanceOfAskWrong = .33
-    askWrong = []
+    # interpret arguments
+    if args.hiragana_mode == 'romaji':
+        hirigana = False
+    verb_mode = args.verb_mode
+    adjective_mode = args.adjective_mode
+
+    correct_count = 0
+    b_continue = True
+    original_chance_of_ask_wrong = .2
+    chance_of_ask_wrong = original_chance_of_ask_wrong
+    ask_wrong = []
     load()
 
-    while bContinue:
-        # determine question/answer & print question
-        currCorrectAns = ''
-        #ask wrong
-        if len(askWrong) > 0 and chanceOfAskWrong > random.random():
-            if args.questionMode == 'japanese' or (args.questionMode == 'both' and random.randint(0,1)):
-                currVerbObj = askWrong[random.randint(0, len(askWrong) - 1)]
-                print('Japanese for: ' + currVerbObj.english_meaning)
-                currCorrectAns = currVerbObj.hirigana_vocab
-            elif args.questionMode == 'english' or args.questionMode == 'both':
-                currVerbObj = askWrong[random.randint(0, len(askWrong) - 1)]
-                if args.textMode == 'katakana':
-                    print('English for: ' + currVerbObj.hirigana_vocab)
-                else:
-                    print('English for: ' + currVerbObj.romaji_vocab)
-                currCorrectAns = currVerbObj.english_meaning
-        #ask new
-        else:
-            if args.questionMode == 'japanese' or (args.questionMode == 'both' and random.randint(0,1)):
-                currVerbObj = verbs[random.randint(0, len(verbs) - 1)]
-                print('Japanese for: ' + currVerbObj.english_meaning)
-                currCorrectAns = currVerbObj.hirigana_vocab
-            elif args.questionMode == 'english' or args.questionMode == 'both':
-                currVerbObj = verbs[random.randint(0, len(verbs) - 1)]
-                if args.textMode == 'katakana':
-                    print('English for: ' + currVerbObj.hirigana_vocab)
-                else:
-                    print('English for: ' + currVerbObj.romaji_vocab)
-                currCorrectAns = currVerbObj.english_meaning
-    
+    while b_continue:
+        # determine question
+        if len(ask_wrong) > 0 and chance_of_ask_wrong > random.random():
+            chance_of_ask_wrong = original_chance_of_ask_wrong
+            curr_question = ask_wrong[random.randint(0, len(ask_wrong) - 1)]
+        elif verb_mode and adjective_mode:
+            if random.random() < 0.5:
+                curr_question = verbs[random.randint(0, len(verbs) - 1)]
+            else:
+                curr_question = adjectives[random.randint(0, len(adjectives) - 1)]
+        elif verb_mode:
+            curr_question = verbs[random.randint(0, len(verbs) - 1)]
+        elif adjectivce_mode:
+            curr_question = adjectives[random.randint(0, len(adjectives) - 1)]
+
+        # ask question
+        if args.question_mode == 'japanese' or (args.question_mode == 'both' and random.randint(0,1)):
+            curr_question.ask_in_english()
+        elif args.question_mode == 'english' or args.question_mode == 'both':
+            curr_question.ask_in_japanese()
+
         # get user answer
-        currUserAns = input()
+        curr_user_ans = input()
     	
         # check for exit
-        if(currUserAns == 'x' or currUserAns == 'X' or currUserAns == 'q' or currUserAns == 'Q'):
-            bContinue = False
+        if(curr_user_ans == 'x' or curr_user_ans == 'X' or curr_user_ans == 'q' or curr_user_ans == 'Q'):
+            b_continue = False
             continue
+
+        if len(ask_wrong) > 0:
+            chance_of_ask_wrong += 0.1
     	
         # check & print result
-        if(currCorrectAns.split('|').count(currUserAns) > 0):
-            correctCount+=1
-            print('CORRECT - Correct Count = ' + str(correctCount) + '\n\n')
-            if askWrong.count(currVerbObj) > 0:
-                askWrong.remove(currVerbObj)
+        if curr_question.resolve_answer(curr_user_ans):
+            correct_count += 1
+            print(' - correct count = ' + str(correct_count))
+            if ask_wrong.count(curr_question) > 0:
+                ask_wrong.remove(curr_question)
         else:
-            print('WRONG - Correct answer is : ' + currCorrectAns + '\n\n')
-            askWrong.append(currVerbObj)
-            
-    print('Thanks for playing. Bye!')
+            ask_wrong.append(curr_question)
+            ask_wrong.append(curr_question)
 
+        print()
+            
+    print('\nThanks for playing. Bye!\n')
 
 verbs = []
+adjectives = []
+hiragana = True
+verb_mode = True
+adjective_mode = True
 main()

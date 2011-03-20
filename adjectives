@@ -1,95 +1,94 @@
 # level 1
-ooki	big	i
-chisai	small	i
-takai	expensive|tall	i
-yasuii	cheap	i
-atarashi	new|fresh	i
-furui	old	i
-ii	good	i
-warui	bad	i
-muzukashii	difficult	i
-yasashii	easy	i
-tooi	far	i
-chikai	close	i
-oishii	tasty	i
-mazui	bad-tasting	i
-isogashii	busy	i
-kirei	beautiful	na
-yuumei	famous	na
-teinei	polite	na
-suki	like	na
-kirai	dislike	na
-shizuka	quiet	na
-hima	free na
-nigiyaka	lively	na
-benri	convenient	na
-genki	well	na
-iroiro	various	na
+ooki	おおき	big	i
+chiisai	ちいさい	small	i
+takai	たかい	expensive|tall	i
+yasui	やすい	cheap	i
+atarashii	あたらしい	new|fresh	i
+furui	ふるい	old	i
+ii	いい	good	i
+warui	わるい	bad	i
+muzukashii	むずかしい	difficult	i
+yasashii	やさしい	easy|kind	i
+tooi	とおい	far	i
+chikai	ちかい	near	i
+oishii	おいしい	tasty	i
+mazui	まずい	bad-tasting	i
+isogashii	いそがしい	busy	i
+kirei	きれい	beautiful	na
+yuumei　ゆうめい	famous	na
+teinei	ていねい	polite	na
+suki	すき	like	na
+kirai	きらい	dislike	na
+shizuka	しずか	quiet	na
+hima	ひま	free	na
+nigiyaka	にぎやか	lively	na
+benri	べんり	convenient	na
+genki	げんき	well|healthy	na
+iroiro	いろいろ	various	na
 # level 2
-atsui	hot|thick	i
-samui	cold (temp)	i
-tsumetai	cold (object)	i
-atatakai	warm	i
-suzushii	cool	i
-omoshiroi	interesting	i
-tsumaranai	boring	i
-semai	narrow	i
-itai	painful	i
-hiroi	wide|spacious	i
-daijyoubu	okay	na
-jyoubu	healthy|strong	na
-taihen	hard	na
-raku	easy|comfortable	na
-iya	nasty	na
-taisetsu	important	na
-jyouzu	skillful	na
-heta	unskillful	na
+atsui	あつい	hot|thick	i
+samui	さむい	cold (temp)	i
+tsumetai	つめたい	cold (object)	i
+atatakai	あたたかい	warm	i
+suzushii	すずしい	cool	i
+omoshiroi	おもしろい	interesting	i
+tsumaranai	つまらない	boring	i
+semai	せまい	narrow	i
+itai	いたい	painful	i
+hiroi	ひろい	wide|spacious	i
+daijoubu	だいじょうぶ	okay	na
+joubu	じょうぶ	healthy|strong	na
+raku	らく	easy|comfortable	na
+iya	いや	nasty	na
+taisetsu	たいせつ	important	na
+jouzu	じょず	skillful	na
+heta	へた	unskillful	na
 # level 3
-hikui	low	i
-nagai	long	i
-omoi	heavy	i
-karui	light	i
-tsuyoi	strong	i
-yowai	weak	i
-kurai	dark	i
-akarui	bright|cheerful	i
-kawaii	cute	i
+hikui	ひくい	short|low	i
+nagai	ながい	long	i
+omoi	おもい	heavy	i
+karui	かるい	light|non-serious	i
+tsuyoi	つよい	strong	i
+yowai	よわい	weak	i
+kurai	くらい	dark	i
+akarui	あかるい	bright|cheerful	i
+kawaii	かわいい	cute	i
 # level 4
-amai	sweet	i
-karai	spicy	i
-usui	thin|weak	i
-futoi	thick	i
-hosoi	thin	i
-wakai	young	i
+amai	あまい	sweet	i
+karai	からい	spicy	i
+usui	うすい	thin|weak|diluted	i
+futoi	ふとい	thick|fat	i
+hosoi	ほそい	thin|slender	i
+wakai	わかい	young	i
 # level 5
-sukunai	a few	i
-ooi	many|much	i
-kitanai	dirty	i
-abunai	dangerous	i
-urusai	noisy	i
-tanoshii	fun	i
-hoshii	want	i
-issyoukenmei	hard|desperately	na
-kiken	risky	na
-zannen	regrettable	na
-shinpai	worry|concern	na
-jiyuu	free|liberty	na
-jyuubun	enough	na
-daisuki	love	na
-tekitou	suitable|appropriate	na
-tokubetsu	special	na
-nesshin	enthusiastic	na
-hitsuyoi	necessary	na
-majime	serious	na
-massugu	straight	na
-muri	impossible	na
-rippa	excellent	na
+sukunai	すくない	a few	i
+ooi	おおい	many|much	i
+kitanai	きたない	dirty	i
+abunai	あぶない	dangerous	i
+urusai	うるさい	noisy	i
+tanoshii	たのしい	fun	i
+hoshii	ほしい	want	i
+isshoukenmei	いっしょうけんめい	eagerly|desperately	na
+kiken	きけん	risky|hazardous	na
+zannen	ざんねん	regrettable	na
+shinpai	しんぱい	worry|concern	na
+jiyuu	じゆう	free|liberty	na
+juubun	じゅうぶん	enough	na
+daisuki	だいすき	love	na
+tekitou	てきとう	suitable|appropriate	na
+tokubetsu	とくべつ	special	na
+nesshin	ねっしん	enthusiastic	na
+hitsuyou	ひつよう	necessary	na
+majime	まじめ	serious|honest	na
+massugu	まっすぐ	straight|direct|honest	na
+muri	むり	impossible	na
+rippa	りっぱ	elegant|splended|excellent	na
 # misc
-aoi	blue	i
-akai	red	i
-kiiroi	yellow	i
-kuroi	black	i
-shiroi	white	i
-chairoi	brown	i
-nerui	lukewarm	i
-marui	round	i
+aoi	あおい	blue	i
+akai	あかい	red	i
+kiiroi	きいろい	yellow	i
+kuroi	くろい	black	i
+shiroi	しろい	white	i
+chairo	ちゃいろ	brown	i
+nurui	ぬるい	lukewarm	i
+marui	まるい	round	i
