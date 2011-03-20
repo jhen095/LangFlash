@@ -103,14 +103,14 @@ class AdjectiveQuestion:
 
 def main():
     parser = argparse.ArgumentParser(description='Japanese flashcards')
-    parser.add_argument('-q', '--question-mode', dest='question_mode', choices=['japanese', 'english', 'both'], default='both', help='')
-    parser.add_argument('-hm', '--hiragana-mode', dest='hiragana_mode', choices=['True', 'False'], default='True', help='')
-    parser.add_argument('-v', '--verb-mode', dest='verb_mode', choices=['True', 'False'], default='True', help='')
-    parser.add_argument('-a', '--adjective-mode', dest='adjective_mode', choices=['True', 'False'], default='True', help='')
-#    args = parser.parse_args()
+    parser.add_argument('-q', '--question-mode', dest='question_mode', choices=['japanese', 'english', 'both'], default='both', help='What language you are asked to give the answers in. Default is \'both\'')
+    parser.add_argument('-hm', '--hiragana-mode', dest='hiragana_mode', choices=['True', 'False'], default='True', help='If you cannot display hiragana characters in your terminal, set this to False. Default is \'True\'')
+    parser.add_argument('-v', '--verb-mode', dest='verb_mode', choices=['True', 'False'], default='True', help='Questions regarding verbs are asked. Default is \'True\'')
+    parser.add_argument('-a', '--adjective-mode', dest='adjective_mode', choices=['True', 'False'], default='True', help='Questions regarding adjectives are asked. Default is \'True\'')
+    args = parser.parse_args()
 #    args = parser.parse_args(['-q', 'english'])
 #    args = parser.parse_args(['-q', 'english', '-hm', 'False'])
-    args = parser.parse_args(['-q', 'japanese'])
+#    args = parser.parse_args(['-q', 'japanese'])
 
     # interpret arguments
     if args.hiragana_mode == 'romaji':
