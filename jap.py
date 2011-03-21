@@ -107,16 +107,15 @@ def main():
     parser.add_argument('-hm', '--hiragana-mode', dest='hiragana_mode', choices=['True', 'False'], default='True', help='If you cannot display hiragana characters in your terminal, set this to False. Default is \'True\'')
     parser.add_argument('-v', '--verb-mode', dest='verb_mode', choices=['True', 'False'], default='True', help='Questions regarding verbs are asked. Default is \'True\'')
     parser.add_argument('-a', '--adjective-mode', dest='adjective_mode', choices=['True', 'False'], default='True', help='Questions regarding adjectives are asked. Default is \'True\'')
-    args = parser.parse_args()
+#    args = parser.parse_args()
 #    args = parser.parse_args(['-q', 'english'])
 #    args = parser.parse_args(['-q', 'english', '-hm', 'False'])
-#    args = parser.parse_args(['-q', 'japanese'])
+    args = parser.parse_args(['-q', 'japanese', '-hm', 'False', '-a', 'False'])
 
     # interpret arguments
-    if args.hiragana_mode == 'romaji':
-        hirigana = False
-    verb_mode = args.verb_mode
-    adjective_mode = args.adjective_mode
+    hiragana = args.hiragana_mode == 'True'
+    verb_mode = args.verb_mode == 'True'
+    adjective_mode = args.adjective_mode == 'True'
 
     correct_count = 0
     b_continue = True
@@ -131,13 +130,14 @@ def main():
             chance_of_ask_wrong = original_chance_of_ask_wrong
             curr_question = ask_wrong[random.randint(0, len(ask_wrong) - 1)]
         elif verb_mode and adjective_mode:
+            print('A - ')
             if random.random() < 0.5:
                 curr_question = verbs[random.randint(0, len(verbs) - 1)]
             else:
                 curr_question = adjectives[random.randint(0, len(adjectives) - 1)]
         elif verb_mode:
             curr_question = verbs[random.randint(0, len(verbs) - 1)]
-        elif adjectivce_mode:
+        elif adjective_mode:
             curr_question = adjectives[random.randint(0, len(adjectives) - 1)]
 
         # ask question
