@@ -6,26 +6,35 @@ import random
 
 def load():
     # load verbs
+    curr_category = ''
     f = open("verbs", "r", encoding="utf-8")
     for line in f:
+        if line[:2] == '##':
+            continue
         if line[0] == '#':
+            curr_category = line[1:].strip()
             continue
         curr_line_split = line.split('\t')
-        verbs.append(VerbQuestion(curr_line_split[0].strip(), curr_line_split[1].strip(), curr_line_split[2].strip()))
+        verbs.append(VerbQuestion(curr_category, curr_line_split[0].strip(), curr_line_split[1].strip(), curr_line_split[2].strip()))
     f.close()
 
     # load adjectives
+    curr_category = ''
     f = open("adjectives", "r", encoding="utf-8")
     for line in f:
+        if line[:2] == '##':
+            continue
         if line[0] == '#':
+            curr_category = line[1:].strip()
             continue
         curr_line_split = line.split('\t')
-        adjectives.append(AdjectiveQuestion(curr_line_split[0].strip(), curr_line_split[1].strip(), curr_line_split[2].strip()))
+        adjectives.append(AdjectiveQuestion(curr_category, curr_line_split[0].strip(), curr_line_split[1].strip(), curr_line_split[2].strip()))
     f.close()
 
 class VerbQuestion:
     """"""
-    def __init__(self, romaji_vocab, hiragana_vocab, english_meaning):
+    def __init__(self, category, romaji_vocab, hiragana_vocab, english_meaning):
+        self.category = category
         self.romaji_vocab = romaji_vocab
         self.hiragana_vocab = hiragana_vocab
         self.english_meaning = english_meaning
@@ -64,7 +73,8 @@ class VerbQuestion:
 
 class AdjectiveQuestion:
     """"""
-    def __init__(self, romaji_vocab, hiragana_vocab, english_meaning):
+    def __init__(self, category, romaji_vocab, hiragana_vocab, english_meaning):
+        self.category = category
         self.romaji_vocab = romaji_vocab
         self.hiragana_vocab = hiragana_vocab
         self.english_meaning = english_meaning
@@ -107,10 +117,10 @@ def main():
     parser.add_argument('-hm', '--hiragana-mode', dest='hiragana_mode', choices=['True', 'False'], default='True', help='If you cannot display hiragana characters in your terminal, set this to False. Default is \'True\'')
     parser.add_argument('-v', '--verb-mode', dest='verb_mode', choices=['True', 'False'], default='True', help='Questions regarding verbs are asked. Default is \'True\'')
     parser.add_argument('-a', '--adjective-mode', dest='adjective_mode', choices=['True', 'False'], default='True', help='Questions regarding adjectives are asked. Default is \'True\'')
-#    args = parser.parse_args()
+    args = parser.parse_args()
 #    args = parser.parse_args(['-q', 'english'])
 #    args = parser.parse_args(['-q', 'english', '-hm', 'False'])
-    args = parser.parse_args(['-q', 'japanese', '-hm', 'False', '-a', 'False'])
+#    args = parser.parse_args(['-q', 'japanese', '-hm', 'False', '-a', 'False'])
 
     # interpret arguments
     hiragana = args.hiragana_mode == 'True'
@@ -130,7 +140,6 @@ def main():
             chance_of_ask_wrong = original_chance_of_ask_wrong
             curr_question = ask_wrong[random.randint(0, len(ask_wrong) - 1)]
         elif verb_mode and adjective_mode:
-            print('A - ')
             if random.random() < 0.5:
                 curr_question = verbs[random.randint(0, len(verbs) - 1)]
             else:
